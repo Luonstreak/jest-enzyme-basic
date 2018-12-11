@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addComment, fetchComments } from "actions";
+import { addComment, fetchComments, changeAuth } from "actions";
 
 class CommentBox extends React.Component {
   constructor(props) {
@@ -11,6 +11,7 @@ class CommentBox extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleRequest = this.handleRequest.bind(this);
+    this.handleAuth = this.handleAuth.bind(this);
   }
 
   handleChange(e) {
@@ -27,6 +28,11 @@ class CommentBox extends React.Component {
     this.props.fetchComments();
   }
 
+  handleAuth(e) {
+    e.preventDefault()
+    this.props.changeAuth();
+  }
+
   render() {
     return <div>
       <form onSubmit={this.handleSubmit}>
@@ -35,6 +41,7 @@ class CommentBox extends React.Component {
         <div>
           <button type="submit">Send</button>
           <button type="button" className="api" onClick={this.handleRequest}>Call API</button>
+          <button type="button" className="auth" onClick={this.handleAuth}>Log In/Out</button>
         </div>
       </form>
     </div>;
@@ -45,6 +52,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addComment: comment => dispatch(addComment(comment)),
     fetchComments: comment => dispatch(fetchComments(comment)),
+    changeAuth: () => dispatch(changeAuth()),
   };
 };
 
