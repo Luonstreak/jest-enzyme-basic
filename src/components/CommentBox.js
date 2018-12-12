@@ -29,26 +29,32 @@ class CommentBox extends React.Component {
   }
 
   handleAuth(e) {
-    e.preventDefault()
+    e.preventDefault();
     this.props.changeAuth();
   }
 
   render() {
-    return <div>
-      <form onSubmit={this.handleSubmit}>
-        <h4>Add a Comment</h4>
-        <textarea value={this.state.input} onChange={this.handleChange} />
-        <div>
-          <button type="submit">Send</button>
-          <button type="button" className="api" onClick={this.handleRequest}>Call API</button>
-          <button type="button" className="auth" onClick={this.handleAuth}>Log In/Out</button>
-        </div>
-      </form>
-    </div>;
+    return (
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <h4>Add a Comment</h4>
+          <textarea value={this.state.input} onChange={this.handleChange} />
+          <div>
+            <button type="submit">Send</button>
+            <button type="button" className="api" onClick={this.handleRequest}>
+              Call API
+            </button>
+            <button type="button" className="auth" onClick={this.handleAuth}>
+              Log In/Out
+            </button>
+          </div>
+        </form>
+      </div>
+    );
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     addComment: comment => dispatch(addComment(comment)),
     fetchComments: comment => dispatch(fetchComments(comment)),
