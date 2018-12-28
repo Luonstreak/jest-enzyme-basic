@@ -8,6 +8,7 @@ export default function(state = [],action){
       const newState = state.filter(el => el !== action.payload);
       return newState;
     case FETCH_COMMENTS:
+      debugger;
       const comments = action.payload.data.map(comment => comment.name);
       return [...state,...comments];
     default:
